@@ -1,13 +1,9 @@
+$pageLateralSpace: 0.6rem;
 $searchBorderColor: rgba(0, 0, 0, 0.2);
 
-.header {
-  h1 {
-    color: orange;
-  }
-}
-
 .search {
-  padding: 0.2rem 0.4rem;
+  padding: $pageLateralSpace;
+  //padding-bottom: 0.6rem;
 }
 
 .input {
@@ -43,6 +39,16 @@ $searchBorderColor: rgba(0, 0, 0, 0.2);
     background-color: transparent;
     border: 1px solid $searchBorderColor;
     border-radius: 99rem;
+  }
+}
+
+.songs {
+  padding: 0 $pageLateralSpace;
+
+  .song {
+    width: 100%;
+    margin-bottom: 0.2rem;
+    text-align: left;
   }
 }
 

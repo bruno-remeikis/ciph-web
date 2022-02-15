@@ -1,38 +1,59 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.scss';
+import Router from 'next/router';
+import { useEffect, useState } from 'react';
 
 import api from '../services/api';
 
+import Header from '../components/header';
+
+import styles from '../styles/Home.module.scss';
+
+type Song = {
+	id: number;
+	song_name: string;
+	artist_name: string;
+}
+
 export default function Home()
 {
-  	const fetchData = () =>
+	const [loading, setLoading] = useState<boolean>(false);
+	const [error, setError] = useState<boolean>(false);
+	const [songs, setSongs] = useState<Array<Song>>([]);
+
+  	const loadSongs = () =>
 	{
-		//const response = await fetch("/api/person");
+		setLoading(true);
+		setError(false);
 
-		console.log('fetching....');
-
-		api.get('hello').then(res =>
+		api.get('feed').then(res =>
 		{
-			/*
-			if(!res.data.ok)
-				throw new Error(`Error: ${res.status}`);
-			*/
-
-			console.log(res.data);
-		});
+			setSongs(res.data);
+			setLoading(false);
+		})
+		.catch(err =>
+		{
+			/*switch(err.response.status)
+			{
+				case 405:
+					alert('Método HTTP não suportado');
+			}*/
+			setError(true);
+			console.log(err);
+			alert(err);
+		})
+		.finally(() => setLoading(false));
 	}
 
+	useEffect(() => loadSongs(), []);
+
 	return (
-		<div>
+		<>
 			<Head>
 				<title>Ciphersonal</title>
 			</Head>
 
 			<main className={styles.main}>
-				{/* HEADER */}
-				<header className={styles.header}>
-					<h1>Ciphersonal</h1>
-				</header>
+				<Header />
 
 				{/* SEARCH */}
 				<div className={styles.search}>
@@ -42,21 +63,31 @@ export default function Home()
 					</div>
 
 					<div className={styles.searchButtons}>
-						<button onClick={() => fetchData()}>Tudo</button>
+						<button onClick={() => loadSongs()}>Tudo</button>
 						<button>Musicas</button>
 						<button>Artistas</button>
 					</div>
 				</div>
 
 				{/* SONGS */}
-				<div>
-					<div>
-						<span>Envolvidão</span>
-						<span>Rael</span>
-					</div>
-					<div>
-						<span>Rael</span>
-					</div>
+				<div className={styles.songs}>
+					{!loading ? songs.map(song =>
+						<button
+							key={song.id}
+							className={styles.song}
+							onClick={() =>
+							{
+								//localStorage
+								sessionStorage.setItem('song', JSON.stringify(song));
+								Router.push(`/song/${song.id}`);
+							}}
+						>
+							<span>{ song.song_name }</span>
+							<span>{ song.artist_name }</span>
+						</button>
+					) : <span>Carregando...</span>}
+
+					{error && <span>Erro</span>}
 				</div>
 
 				{/* BUTTONS */}
@@ -65,6 +96,6 @@ export default function Home()
 					<button>+</button>
 				</div>
 			</main>
-		</div>
-	)
+		</>
+	);
 }
