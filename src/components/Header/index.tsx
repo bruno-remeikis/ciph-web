@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { FiArrowLeft, FiMoreVertical } from 'react-icons/fi';
 
-import styles from '../styles/components/Header.module.scss';
+import styles from './styles.module.scss';
 
 export default function Header()
 {
@@ -18,12 +18,13 @@ export default function Header()
     return(
         <header className={styles.header}>
             <div className={styles.rightBox}>
+                {router.pathname !== '/' &&
                 <button
                     className={styles.backBtn}
                     onClick={handleBack}
                 >
-                    <FiArrowLeft size={20} style={{ visibility: router.pathname !== '/' ? 'visible' : 'hidden' }}  />
-                </button>
+                    <FiArrowLeft size={20}  />
+                </button>}
 
                 <Link href='/'>
                     <h1>Ciphersonal</h1>

@@ -1,5 +1,5 @@
 import mysql from 'serverless-mysql';
-import "dotenv/config";
+//import "dotenv/config";
 
 // mysql://b386b4e3d121ff:d7456ada@us-cdbr-east-05.cleardb.net/heroku_4b05c50a0838a17?reconnect=true
 /*

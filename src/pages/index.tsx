@@ -2,13 +2,11 @@ import Head from 'next/head';
 import Router from 'next/router';
 import { useEffect, useState } from 'react';
 
-import { FiPlus } from 'react-icons/fi';
+import { FiPlus, FiX } from 'react-icons/fi';
 
 import api from '../services/api';
 
-import Header from '../components/header';
-
-import styles from '../styles/Home.module.scss';
+import styles from './styles.module.scss';
 
 type Song = {
 	id: number;
@@ -34,11 +32,6 @@ export default function Home()
 		})
 		.catch(err =>
 		{
-			/*switch(err.response.status)
-			{
-				case 405:
-					alert('Método HTTP não suportado');
-			}*/
 			setError(true);
 			console.log(err);
 			alert(err);
@@ -59,7 +52,9 @@ export default function Home()
 				<div className={styles.search}>
 					<div className={styles.input}>
 						<input placeholder='Pesquisar' />
-						<button>x</button>
+						<button>
+							<FiX size={12} />
+						</button>
 					</div>
 
 					<div className={styles.searchButtons}>

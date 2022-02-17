@@ -21,6 +21,10 @@ $searchBorderColor: rgba(0, 0, 0, 0.2);
   }
 
   button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
     background-color: transparent;
     color: rgba(0, 0, 0, 0.4);
     border: none;
