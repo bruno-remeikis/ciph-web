@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Router from 'next/router';
 import { useEffect, useState } from 'react';
 
+import { FiPlus } from 'react-icons/fi';
+
 import api from '../services/api';
 
 import Header from '../components/header';
@@ -53,8 +55,6 @@ export default function Home()
 			</Head>
 
 			<main className={styles.main}>
-				<Header />
-
 				{/* SEARCH */}
 				<div className={styles.search}>
 					<div className={styles.input}>
@@ -91,9 +91,14 @@ export default function Home()
 				</div>
 
 				{/* BUTTONS */}
-				<div>
-					<button>^</button>
-					<button>+</button>
+				<div className={styles.mainBtns}>
+					{/*<button>^</button>*/}
+					<button
+						className={styles.newSongBtn}
+						onClick={() => Router.push('/song/new')}
+					>
+						<FiPlus size={20} />
+					</button>
 				</div>
 			</main>
 		</>

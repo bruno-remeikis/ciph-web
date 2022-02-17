@@ -2,9 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react';
 
-import api from '../../services/api';
-
-import Header from '../../components/header';
+import api from '../../../services/api';
 
 export default function Song()
 {
@@ -51,8 +49,6 @@ export default function Song()
             <Head>
                 <title>{ `Ciph - ${song?.song_name}` }</title>
             </Head>
-
-            <Header />
 
             <h1>Song</h1>
             {!notFound

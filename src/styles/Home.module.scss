@@ -37,6 +37,7 @@ $searchBorderColor: rgba(0, 0, 0, 0.2);
 
   button {
     background-color: transparent;
+    padding: 0.2rem 0.5rem;
     border: 1px solid $searchBorderColor;
     border-radius: 99rem;
   }
@@ -49,6 +50,29 @@ $searchBorderColor: rgba(0, 0, 0, 0.2);
     width: 100%;
     margin-bottom: 0.2rem;
     text-align: left;
+  }
+}
+
+.mainBtns {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 99rem;
+  }
+
+  .newSongBtn {
+    background-color: orange;
+    color: var(--white-text-color);
+
+    width: 3rem;
+    height: 3rem;
   }
 }
 
